@@ -1,0 +1,13 @@
+@extends('master')
+@section('content')
+    @include('layout.section-menucategory')
+    @include('layout.banner-main')
+    @include('layout.section-product')
+    @include('layout.section-product-new')
+    @include('layout.section-product-meat')
+    @include('layout.content-middle')
+    @include('layout.vagetable')
+    @include('layout.content-middle2')
+    @include('layout.product-careals')
+    @include('layout.social')
+@endsection
