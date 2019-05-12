@@ -20,6 +20,42 @@
 	<!-- ICONS -->
 	<link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/img/apple-icon.png')}}">
 	<link rel="icon" type="image/png" sizes="96x96" href="{{asset('assets/img/favicon.png')}}">
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.4/summernote.css" rel="stylesheet">
+	<style>
+		.nav > li > a[data-toggle="collapse"] .icon-submenu {
+    display: inline-block;
+    vertical-align: middle;
+    *vertical-align: auto;
+    *zoom: 1;
+    *display: inline;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+    float: right;
+    position: relative;
+    top: 5px;
+    font-size: 12px;
+    line-height: 1.1;
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+#wrapper #sidebar-nav.sidebar-left {padding-top: 25px !important;}
+.sidebar-left
+{
+    background-color: #fff;  
+}
+.sidebar-left .nav .nav > li  {
+    padding-left: 30px;
+    padding-top: 10px;
+		padding-bottom: 10px;
+}
+	</style>
+
+	
 </head>
 
 <body>
@@ -38,6 +74,7 @@
 	<script src="{{asset('assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
 	{{-- <script src="{{asset('assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js')}}"></script>
 	<script src="{{asset('assets/vendor/chartist/js/chartist.min.js')}}"></script> --}}
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.4/summernote.js"></script>
 	<script src="{{asset('assets/scripts/klorofil-common.js')}}"></script>
 	<script src="{{asset('js/profile.js')}}"></script>
 	<script>

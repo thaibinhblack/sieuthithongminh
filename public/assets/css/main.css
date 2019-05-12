@@ -1762,5 +1762,10 @@ ul.activity-timeline > li {
   .project-table > tbody > tr > td .avatar {
     width: 22px;
     border: 1px solid #CCC; }
+.upload {position: relative;text-align: center}
 
+.btn-upload,.file-upload {width: 75px;height: 25px;margin: auto;color: #0051c9;font-size: 20px;border:none;background: transparent;cursor: pointer;}
+
+.file-upload {position: absolute;transform: translate(-50%,-50%);top: 50%;left: 50%;opacity: 0;}
+.image-product {padding:7px !important;}
 /*# sourceMappingURL=main.css.map */

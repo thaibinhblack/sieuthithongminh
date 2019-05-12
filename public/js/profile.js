@@ -2,13 +2,19 @@ $(document).ready(function() {
 	
     var readURL = function(input) {
         if (input.files && input.files[0]) {
+           
+        var start = 0;        
+        while(input.files[start] != undefined)
+        {
             var reader = new FileReader();
-
             reader.onload = function (e) {
                 $('.profile-pic').attr('src', e.target.result);
+                var data = "<img class='col-md-4 image-product' src='"+e.target.result+"'/>"; 
+                $('.list-pic').append(data)
             }
-    
-            reader.readAsDataURL(input.files[0]);
+            reader.readAsDataURL(input.files[start]);
+            start++;
+        }
         }
     }
    
@@ -42,5 +48,42 @@ $(document).ready(function() {
                 $('.modal-body').html(result);
             }
          });
+    })
+    var active = 0;
+    $(document).on('click','.btn-filter',function(){
+        var value_option = $('.selector>option:selected').val();
+        var value_theloai = $('.selector_theloai>option:selected').val();
+        
+        if(value_option == 1 && active == 0)
+        {
+            active = 1;
+            $('.id_sanpham .name').toggle();
+            $('.check').toggle();
+        }
+        if(value_option == 0 && active == 1)
+        {
+            active = 0;
+            $('.id_sanpham .name').toggle();
+            $('.check').toggle();
+        }
+
+    })
+    $('#editor').summernote({
+        height:300,
+    });
+    //check cat
+    $('.check_cat').change(function(e){
+        console.log(e.target.checked);
+        if(e.target.checked == false)
+        {
+            $('check_cat:first-child').attr('checked');
+            
+        }
+        else
+        {
+            //console.log($('.check_cat').attr('checked',false));
+            $('.check_cat').prop('checked',false);
+            $(this).prop('checked','checked');
+        }
     })
 });

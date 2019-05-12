@@ -23,3 +23,7 @@ Route::post('/password','AccountController@password');
 Route::post('/daily','DaiLyController@create');
 Route::POST('/daily/update','DaiLyController@update');
 
+
+//product
+Route::post('/sanpham','ProductController@store');
+Route::post('/theloai','TheLoaiSanPhamController@store');

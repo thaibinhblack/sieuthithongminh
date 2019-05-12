@@ -162,7 +162,7 @@ class AccountController extends Controller
     //login
     public function login(Request $request)
     {
-        $account = Account::where('EMAIL',$request->get('email'))->first();
+        $account = Account::join('tk_dl','taikhoan.ID_USER','tk_dl.ID_USER')->where('EMAIL',$request->get('email'))->first();
         if(Hash::check($request->get('password'), $account->PASSWORD))
         {
             $request->session()->put('account', $account);
