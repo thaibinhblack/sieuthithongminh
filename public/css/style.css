@@ -3205,3 +3205,29 @@ section.content-about .hello:before {
     height: 350px;
 }
 .success {text-align: center;color: #3b5998;}
+/*Profile*/
+.group-info {padding: 10px;}
+#profile {background: #ececec;padding:25px 0;}
+#profile div.col-md-3.box-profile-left {border:1px solid #e2e2e2;background: #fff;padding:30px 15px;}
+#profile h4 {text-align: center;text-transform: uppercase;width: 70%;margin:auto;padding-bottom: 7px;border-bottom: 1px solid #e2e2e2;}
+.menu-profile {margin-top: 15px;}
+.menu-profile>li {display: inline-block;padding:5px 7px;width: 100%;text-align: left;text-transform: capitalize}
+.menu-profile>li button {width: 100%;}
+.frompasswordprofile {width:70%;margin: auto}
+.avatar-wrapper {width: 150px;text-align: center;position: relative;margin: auto}
+.profile-pic {width: 150px;height: 150px;border-radius: 50%;}
+.upload-button button,.upload-button input[type="file"],.upload-button
+{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 70px;
+    height: 25px;
+    
+}
+.upload-button {width: 150px;height: 150px;border-radius: 50%;}
+.upload-button button {background: transparent;color: #3b5998;border: none;opacity: 0;}
+.upload-button input[type="file"]  {opacity: 0;z-index: 999;cursor: pointer;}
+.avatar-wrapper:hover .upload-button {background: #33333340;}
+.avatar-wrapper:hover .upload-button button {opacity: 1;}

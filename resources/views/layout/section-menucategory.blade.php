@@ -6,7 +6,7 @@
                     <div class="categories-top">
                         <div class="logo">
                             <div class="humburger"> <span></span> </div>
-                            <a href="index.html"><h1>Google</h1></a>
+                            <a href="index.html"><h1>SIÊU THỊ</h1></a>
                         </div>
                         <form action="#" class="search-form">
                             <div class='search-drop-down drop-down'>

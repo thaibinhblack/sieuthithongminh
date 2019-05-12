@@ -35,7 +35,7 @@
                         </li>
                         @if(Session()->has('account'))
                         <li>
-                            <a href="/account" id="popup-signin">
+                        <a href="/account?id={{Session()->get('account.ID_USER')}}" id="popup-signin">
                                 <i class="fas fa-sign-in-alt"></i>
                                {{Session()->get('account.USERNAME')}}
                             </a>

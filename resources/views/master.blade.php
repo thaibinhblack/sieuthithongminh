@@ -53,6 +53,7 @@
         <script type="text/javascript" src="{{asset('js/ninja-slider.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/thumbnail-slider.js')}}"></script>
         <script src="{{asset('/js/main.js')}}"></script>
+        <script src="{{asset('/js/profile.js')}}"></script>
         
 
     </body>

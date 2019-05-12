@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Account;
+use App\tk_dl;
+use App\daily;
 class AdminController extends Controller
 {
     /**
@@ -13,7 +15,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $accounts = Account::all();
+        $accounts = Account::join('tk_dl','taikhoan.ID_USER','tk_dl.ID_USER')
+        ->join('daily','tk_dl.ID_DAILY','daily.ID_DAILY')
+        ->select('taikhoan.USERNAME','daily.ID_DAILY','daily.TEN_DAILY','daily.EMAIL','daily.SDT','daily.DIACHI_DAILY')->get();
 
         return view('admin',compact('accounts'));
     }
