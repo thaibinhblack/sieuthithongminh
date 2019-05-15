@@ -6,7 +6,7 @@
                     <div class="categories-top">
                         <div class="logo">
                             <div class="humburger"> <span></span> </div>
-                            <a href="index.html"><h1>SIÊU THỊ</h1></a>
+                            <a href="/"><h1>SIÊU THỊ</h1></a>
                         </div>
                         <form action="#" class="search-form">
                             <div class='search-drop-down drop-down'>
@@ -28,10 +28,22 @@
                             </a>
                         </div>
                         <div class="indicators">
-                            <a href="cart.html" class="indicator cart">
+                            <a href="/cart" class="indicator cart">
                                 <i class="fas fa-shopping-cart"></i>
-                                <span class="indicator-count">0</span>
-                                <span class="basket-desc">Cart <strong> 0 </strong> </span>
+                                <span class="indicator-count">
+                                    @if(Session()->has('cart'))
+                                        {{count(Session()->get('cart'))}}
+                                    @else
+                                        0
+                                    @endif
+                                </span>
+                                <span class="basket-desc">Cart <strong> 
+                                @if(Session()->has('cart'))
+                                        {{count(Session()->get('cart'))}}
+                                @else
+                                    0
+                                @endif
+                                </strong> </span>
                             </a>
                         </div>
                     </div>

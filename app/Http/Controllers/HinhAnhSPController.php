@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\sanpham;
 use App\hinhanhsanpham;
-class IndexController extends Controller
+class HinhAnhSPController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +13,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        //tôi tính lấy ở đây ở giao diện chính get nhiều
-        $products = sanpham::take(8)
-        ->join('daily','sanpham.ID_DAILY','daily.ID_DAILY')
-        ->with('getImage')->orderBy('sanpham.created_at','desc')->get();
-        return view('app',compact('products')); /// thag id nao ca hinh v 
+        //
     }
 
     /**
@@ -84,6 +79,8 @@ class IndexController extends Controller
      */
     public function destroy($id)
     {
-        //
+        hinhanhsanpham::where('ID_HINHANH',$id)->delete();
+        
+        return response()->json('DELETED', 200);
     }
 }

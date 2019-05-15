@@ -77,6 +77,7 @@
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.4/summernote.js"></script>
 	<script src="{{asset('assets/scripts/klorofil-common.js')}}"></script>
 	<script src="{{asset('js/profile.js')}}"></script>
+	<script src="{{asset('js/product.js')}}"></script>
 	<script>
 	
 	</script>

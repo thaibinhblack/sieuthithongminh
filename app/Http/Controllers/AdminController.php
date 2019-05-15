@@ -7,7 +7,10 @@ use App\Account;
 use App\tk_dl;
 use App\daily;
 use App\sanpham;
+use App\hinhanhsanpham;
 use App\theloai;
+use App\chitietdonhang;
+
 class AdminController extends Controller
 {
     /**
@@ -30,10 +33,33 @@ class AdminController extends Controller
                     return view('admin',compact('accounts'));
                 }
                 else {
+                    $donhangs = chitietdonhang::join('sanpham','chitietdondathang.ID_SP','sanpham.ID_SP')
+                    ->join('donhang','chitietdondathang.ID_DONHANG','donhang.ID_DONHANG')
+                    ->join('hinhthucthanhtoan','donhang.ID_HTTT','hinhthucthanhtoan.ID_HTTT')
+                    ->join('trangthaidonhang','donhang.ID_TRANGTHAI','trangthaidonhang.ID_TRANGTHAI')
+                    ->join('phuongthucvanchuyen','donhang.ID_PHUONGTHUC','phuongthucvanchuyen.ID_PHUONGTHUC')
+                    
+                    ->where('sanpham.ID_DAILY',$request->session()->get('account.ID_DAILY'))
+                    ->with('getKH')->get();
                     $theloais = theloai::all();
-                    $products = new sanpham();
-                    $products->index(20,false,$request->session()->get('account.ID_DAILY'));
-                    return view('admin',compact('products','theloais'));
+                    $products = sanpham::where('ID_DAILY',$request->session()->get('account.ID_DAILY'))->get();
+                    $product_detail = [];
+                    $images = [];
+                    if($request->get('action') == 'chitiet')
+                    {
+                       
+                        $product_detail = sanpham::where('ID_SP',$request->get('id'))->first();
+                        if($product_detail)
+                        {
+                            $images = hinhanhsanpham::where('ID_SP',$product_detail->ID_SP)->get();
+                        }
+                        else {
+                            return redirect('/admin?page=product');
+                        }
+                        
+                    }
+                    //$products->index(20,false,$request->session()->get('account.ID_DAILY'));
+                    return view('admin',compact('products','theloais','product_detail','images','donhangs'));
                 }
             }
         }
@@ -44,6 +70,21 @@ class AdminController extends Controller
         
     }
 
+    public function chitiet(Request $request,$id)
+    {
+        $donhang = chitietdonhang::join('sanpham','chitietdondathang.ID_SP','sanpham.ID_SP')
+                    ->join('donhang','chitietdondathang.ID_DONHANG','donhang.ID_DONHANG')
+                    ->join('hinhthucthanhtoan','donhang.ID_HTTT','hinhthucthanhtoan.ID_HTTT')
+                    ->join('trangthaidonhang','donhang.ID_TRANGTHAI','trangthaidonhang.ID_TRANGTHAI')
+                    ->join('phuongthucvanchuyen','donhang.ID_PHUONGTHUC','phuongthucvanchuyen.ID_PHUONGTHUC')
+                    
+                    ->where('sanpham.ID_DAILY',$request->session()->get('account.ID_DAILY'))
+                    ->where('chitietdondathang.ID_DONHANG',$id)
+                    ->with('getImage')
+                    ->get();
+        return view('chitietdonhang',compact('donhang'));
+    }
+        
     /**
      * Show the form for creating a new resource.
      *

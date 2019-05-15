@@ -3231,3 +3231,15 @@ section.content-about .hello:before {
 .upload-button input[type="file"]  {opacity: 0;z-index: 999;cursor: pointer;}
 .avatar-wrapper:hover .upload-button {background: #33333340;}
 .avatar-wrapper:hover .upload-button button {opacity: 1;}
+.counttime li {
+    display: inline-block;
+    font-size: 1.5em;
+    list-style-type: none;
+    padding: 1em;
+    text-transform: uppercase;
+  }
+  
+.counttime  li span {
+    display: block;
+    font-size: 4.5rem;
+  }

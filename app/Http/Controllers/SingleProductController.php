@@ -4,21 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\sanpham;
-use App\hinhanhsanpham;
-class IndexController extends Controller
+use App\giamgia;
+class SingleProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //tôi tính lấy ở đây ở giao diện chính get nhiều
-        $products = sanpham::take(8)
-        ->join('daily','sanpham.ID_DAILY','daily.ID_DAILY')
-        ->with('getImage')->orderBy('sanpham.created_at','desc')->get();
-        return view('app',compact('products')); /// thag id nao ca hinh v 
+        if($request->has('id'))
+        {
+            if(giamgia::where('ID_SP',$request->GET('id'))->first())
+            {
+                $product = sanpham::join('giamgia','sanpham.ID_SP','giamgia.ID_SP')
+            ->join('khuyenmai','giamgia.ID_KM','khuyenmai.ID_KM')
+            ->join('loaisanpham','sanpham.ID_LOAISP','loaisanpham.ID_LOAISP')
+            ->where('sanpham.ID_SP',$request->get('id'))->with('getImage')->first();
+            }
+            else {
+                $product = sanpham::join('loaisanpham','sanpham.ID_LOAISP','loaisanpham.ID_LOAISP')
+                ->where('sanpham.ID_SP',$request->get('id'))->with('getImage')->first();
+            }
+            return view('singleproduct',compact('product'));
+        }
+        
     }
 
     /**

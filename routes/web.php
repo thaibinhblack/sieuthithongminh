@@ -5,6 +5,7 @@ Route::get('/','IndexController@index');
 //admin
 
 Route::get('/admin','AdminController@index');
+Route::get('/admin/donhang/{id}','AdminController@chitiet');
 
 //ACCOUNT
 
@@ -27,3 +28,16 @@ Route::POST('/daily/update','DaiLyController@update');
 //product
 Route::post('/sanpham','ProductController@store');
 Route::post('/theloai','TheLoaiSanPhamController@store');
+Route::post('/product/update','ProductController@update');
+Route::get('/product/delete/{id}','ProductController@destroy');
+
+//single product
+Route::get('/product','SingleProductController@index');
+
+//cart
+Route::get('/addcart','CartController@create');
+Route::get('/cart','CartController@index');
+Route::get('/deletecart','CartController@destroy');
+Route::get('/deleteallcart','CartController@delete');
+Route::post('/thanhtoan','CartController@thanhtoan');
+

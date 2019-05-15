@@ -11,8 +11,8 @@
                     @endif
                     <li><a data-toggle="tab" href="#password">Đổi mật khẩu</a></li>
                     <li><a href="/logout">Đăng xuất</a></li>
-                    @if($account->QUYEN == 1)
-                    <li><a href="/admin">Quản trị</a></li>
+                    @if($account->QUYEN != 0)
+                    <li><a href="/admin?page=product">Quản trị</a></li>
                     @endif
                   
                 </ul>

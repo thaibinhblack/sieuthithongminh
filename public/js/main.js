@@ -341,11 +341,11 @@ $(document).ready(function($) {
  * Cart 
  * 
  */
-$(document).ready(function($) {
-  $(".delete-cart-product").on("click", function() {
-      $(this).closest(".order-cart").remove()
-  })
-});
+// $(document).ready(function($) {
+//   $(".delete-cart-product").on("click", function() {
+//       $(this).closest(".order-cart").remove()
+//   })
+// });
 
 
 
@@ -364,7 +364,7 @@ $(document).ready(function($) {
       var price = parent.find('.input_price').val();
       var total = price * o;
       // console.log(price + ',' + o );
-      children.html('$<span>'+total+'</span>');
+      children.html('<span>'+total+'</span> <small>vnđ</small>');
   }), 
   $(".increment-weight").click(function(e) {
       var e = $(this).closest(".counter-weight").find(".count-weight"),
@@ -375,18 +375,40 @@ $(document).ready(function($) {
       var price = parent.find('.input_price').val();
       var total = price * o;
       // console.log(price + ',' + o );
-      children.html('$<span>'+total+'</span>');
+      children.html('<span>'+total+'</span> <small>vnđ</small>');
       
   })
 
   $(".update-cart").click(function() {
       var array_total = $('.wrapper-cart').find('.cart-price-last span');
+      var array_sanpham = $('.wrapper-cart').find('.ID_SP');
+      var array_soluong = $('.wrapper-cart').find('.count-weight');
+      var $data = [];
       var total = 0;
-    
+      console.log(array_sanpham,array_soluong)
       for(var i = 0; i < array_total.length; i++){
         total+= parseInt(array_total.eq(i).text());
-       
+        $.ajax({
+          type:'GET',
+          url:'./api/cart/'+array_sanpham.eq(i).val()+'/'+array_soluong.eq(i).val(),
+          data: $data,
+          success:function(data) {
+             console.log(data);
+             //location.reload();
+          }
+      });
+        var value = {
+          'ID_SP': array_sanpham.eq(i).val(),
+          'SOLUONG': array_soluong.eq(i).val()  
+        };
+        $data.push(value);
+        
+        
+       // console.log(array_sanpham.eq(i).val());
       }
+      //console.log($data);
+      
+      //console.log(data);
       $('.subtotals-count').html('$ '+ total);
 
       var totals = parseInt($('.total-form').find('input:checked').val()),

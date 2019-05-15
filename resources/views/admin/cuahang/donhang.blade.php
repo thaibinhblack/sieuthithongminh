@@ -1,5 +1,5 @@
 <div class="row">
-        <div class="filter col-md-3">
+        {{-- <div class="filter col-md-3">
             <select class="form-control selector">
                 <option value="0" selected>Xem</option>
                 <option value="1">Các Sản Phẩm Giảm Giá</option>
@@ -21,12 +21,12 @@
         <div class="filter col-md-2">
             <button class="btn btn-info btn-filter">Áp dụng</button>
         </div>
-        <br/>
+        <br/> --}}
         <div class="col-md-12" style="padding-top:15px;">
             <!-- BASIC TABLE -->
             <div class="panel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">THÔNG TIN SẢN PHẨM</h3>
+                    <h3 class="panel-title">THÔNG TIN ĐƠN HÀNG</h3>
                 </div>
                 <div class="panel-body">
                     <table class="table">
@@ -37,45 +37,32 @@
                                     <span class="name">#</span>
                                     <input class="check checkall" type="checkbox" value="-1"  style="display:none;"/>
                                 </th>
-                                <th>TÊN SẢN PHẨM</th>
-                                <th>SỐ LƯỢNG</th>
-                                <th>GIÁ SP</th>
+                                <th>TÊN KHÁCH HÀNG</th>
+                                
+                                <th>HÌNH THỨC THANH TOÁN</th>
+                                <th>PHƯƠNG THÚC VẬN CHUYỂN</th>
                                 <th>TÌNH TRẠNG</th>
                                
-                                <th>TIME</th>
-                                <th>ACTIONI</th>
+                                <th>THỜI GIAN ĐẶT HÀNG</th>
+                                <th>ACTION</th>
                                 
                             </tr>
                             <?php $count = 1; ?>
-                            @foreach ($products as $product)
+                            @foreach ($donhangs as $donhang)
                                 <tr>
                                     <th class="id_sanpham">
-                                    <span class="name">{{$product->ID_SP}}</span>
+                                    <span class="name">{{$count}}-{{$donhang->ID_DONHANG}}</span>
                                         <input class="check checkall" type="checkbox" value="-1"  style="display:none;"/>
                                     </th>
-                                    <th>{{$product->TEN_SP}}</th>
-                                    <th>{{$product->SOLUONG}}</th>
-                                    <th>{{number_format($product->GIA_SP)}}<small>đ</small>/{{$product->DONVI_SP}}</th>
-                                    <th>
-                                        @if($product->TINH_TRANG == 0)
-                                            Bình Thường
-                                        @elseif($product->TINH_TRANG == 1)
-                                            Hàng Mới Về
-                                        @elseif($product->TINH_TRANG == 2)
-                                            Bán Chạy
-                                        @elseif($product->TINH_TRANG == 3)
-                                            Sắp Hết Hàng
-                                        @elseif($product->TINH_TRANG == 4)
-                                            Xã Hàng
-                                        @elseif($product->TINH_TRANG == 5)
-                                            Tồn Kho
-                                        @else
-                                            Hết Hàng
-                                        @endif
-                                    </th>
                                     
-                                    <th>{{date($product->created_at)}}</th>
-                                    <th><a href="/admin?page=product&action=chitiet&id={{$product->ID_SP}}"><span class="lnr lnr-eye"></span></a></th>
+                                    <th>{{$donhang->TEN_DONHANG}}</th>
+                                    
+                                    <th>{{$donhang->HINHTHUC_THANHTOAN}}</th>
+                                    <th>{{$donhang->PHUONG_THUC}}</th>
+                                    <th>{{$donhang->MOTA_TRANGTHAI}}</th>
+                                    <th>{{$donhang->THOI_GIAN_DAT_HANG}}</th>
+                                    
+                                    <th><a href="/admin/donhang/{{$donhang->ID_DONHANG}}"><span class="lnr lnr-eye"></span></a></th>
 
                                 </tr>
                                 <?php $count = $count+1; ?>
@@ -90,4 +77,32 @@
             <!-- END BASIC TABLE -->
         </div>
        
+    </div>
+
+    <div class="modal" id="infodonhang">
+            <div class="modal-dialog">
+              <div class="modal-content">
+          
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title"></h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <form method="POST" action="/daily/update">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <!-- Modal body -->
+                <div class="modal-body">
+                    
+                        
+                    
+                </div>
+          
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info" >CẬP NHẬT</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+                </form>
+              </div>
+        </div>
     </div>

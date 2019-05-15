@@ -1768,4 +1768,9 @@ ul.activity-timeline > li {
 
 .file-upload {position: absolute;transform: translate(-50%,-50%);top: 50%;left: 50%;opacity: 0;}
 .image-product {padding:7px !important;}
+.item-image {padding: 7px !important;position: relative;}
+img.image-product {width: 100%;height: auto;}
+.btn-delete,.checkimage{position: absolute;top: 15px;right:15px;opacity: 0;z-index: 999;font-size: 12px;border:none;background: #fff;color: #333;}
+.item-image:hover .btn-delete{opacity: 1;}
+.checkimage {left: 15px;}
 /*# sourceMappingURL=main.css.map */

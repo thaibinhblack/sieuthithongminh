@@ -150,6 +150,7 @@ class AccountController extends Controller
             'USERNAME' => $request->get('username'),
             'EMAIL' => $request->get('email'),
             'PASSWORD' => Hash::make($request->get('password')),
+            'AVATAR' => 'avatar/TT.jpg',
             'REMEMBER_TOKEN' => $request->get('_token')
         ]);
         $account->save();
